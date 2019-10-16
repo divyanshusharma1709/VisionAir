@@ -98,10 +98,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             getLocation();
         }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("Pref", 0);
+        if(pref.getBoolean("First", true)) {
+            Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+            startActivity(intent);
+        }
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("First", false);
         editor.commit();
-
         //////////////////////////////////////////////////////////ANIMATION////////////////
         //checkk.setVisibility(View.INVISIBLE);
 //        appname = findViewById(R.id.textView);
