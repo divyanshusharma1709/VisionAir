@@ -5,11 +5,6 @@ public class cpcbCenterList {
 
     String mlocationName;
     double mlat, mlon;
-
-    cpcbCenterList() {
-
-    }
-
     cpcbCenterList(String locationName, double lat, double lon) {
         mlocationName = locationName;
         mlat = lat;

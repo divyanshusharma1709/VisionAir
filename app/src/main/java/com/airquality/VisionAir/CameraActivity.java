@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jjoe64.graphview.GraphView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,9 +44,6 @@ import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-import org.tensorflow.Graph;
-import org.tensorflow.Session;
-import org.tensorflow.Tensor;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -63,18 +58,15 @@ import static org.opencv.imgproc.Imgproc.INTER_AREA;
 public class CameraActivity extends AppCompatActivity implements LocationListener {
 
     public static final String TAG = "CameraActivity";
-    public static final String Tagg = "new";
     public static Bitmap bitmap;
-    long startTime;
 
     static {
         System.loadLibrary("tensorflow_inference");
     }
 
+    long startTime;
     int flag, feature_check = 0;
     float distance;
-    GraphView graphview;
-    long output, outputentropy, outputhour, outputomega, outputapi;
     DatabaseReference ref;
     String keyDate;
     int tem_flag = 0;
@@ -83,18 +75,10 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
     double longitude;
     String nearest = " ";
     Mat img;
-    int currentHourIn24Format;
     ArrayList<cpcbCenterList> arrayList = new ArrayList<>();
-    byte[] graphDef;
-    Session sess;
-    Graph graph;
     File file;
-    int flagt = 0;
-    Tensor<String> checkpointPrefix;
-    String checkpointDir;
     float[][] features = new float[1][10];
     float[] labels = new float[1];
-    int epochs = 1;
     double cpcbLabel;
     Mat imgcopy;
     String stationName;
@@ -844,7 +828,6 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
 //        if(tem_flag==0) {
 
 
-
     }
 
     @Override
@@ -1232,8 +1215,7 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
         protected Void doInBackground(Void... arg0) {
             HttpHandler sh = new HttpHandler();
             long currentTime = SystemClock.elapsedRealtime();
-            if(((currentTime - startTime)/1000) > 30)
-            {
+            if (((currentTime - startTime) / 1000) > 30) {
                 //Toast.makeText(CameraActivity.this, "Cannot fetch data", Toast.LENGTH_SHORT).show();
             }
             String url = "https://api.openweathermap.org/data/2.5/weather?lat=" + noDecimalLat + "&lon=" + noDecimalLong + "&appid=0e53582379625c9fbf0effdbc9cf84e4";
@@ -1257,17 +1239,17 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
                     temp = Float.parseFloat(jsonMain.getString("temp"));
                     pressure = Float.parseFloat(jsonMain.getString("pressure"));
 
-                    Log.i(TAG,"Humi: "+humi);
-                    Log.i(TAG,"Temp: "+temp);
-                    Log.i(TAG,"press: "+pressure);
+                    Log.i(TAG, "Humi: " + humi);
+                    Log.i(TAG, "Temp: " + temp);
+                    Log.i(TAG, "press: " + pressure);
 
                     JSONObject jsonObject = jsonObj.getJSONObject("wind");
 
                     deg = Float.parseFloat(jsonObject.getString("deg"));
                     speed = Float.parseFloat(jsonObject.getString("speed"));
 
-                    Log.i(TAG,"Deg: "+deg);
-                    Log.i(TAG,"Speed: "+speed);
+                    Log.i(TAG, "Deg: " + deg);
+                    Log.i(TAG, "Speed: " + speed);
 
                     JSONObject jsonObject2 = new JSONObject(jsonStrAqi);
                     JSONArray jsonObject1 = jsonObject2.getJSONArray("records");

@@ -22,12 +22,12 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:fontFamily="@font/geosans"
                 android:textColor="#000000"
                 android:letterSpacing="0.1"
                 android:textSize="38dp"
-                android:text="Help us improve" />
+                android:text="Personalization Opt-In" />
             <ImageView
                 android:layout_width="290dp"
                 android:layout_height="200dp"
@@ -43,48 +43,10 @@
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:layout_marginTop="20dp"
-                android:text="By sending the processed data (which does not contain any sensitive information) you can help our model improve overtime and give better predicitions"
+                android:text="In order to make the Air Quality estimates personalized to your surroundings, we provide a Personalized Model Option."
                 android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/textView0"
-                android:layout_width="330dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:letterSpacing="0.1"
-                android:fontFamily="@font/geosans"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:text="Would you like to participate and help us improve our model?"
-                android:textAlignment="center"/>
-            <Button
-                android:id="@+id/yes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:letterSpacing="0.1"
-                android:fontFamily="@font/geosans"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:background="@drawable/button_round_stroke"
-                android:text="Yes, count me in"
-                android:textAlignment="center"/>
-            <Button
-                android:id="@+id/no"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:letterSpacing="0.1"
-                android:fontFamily="@font/geosans"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:layout_marginTop="20dp"
-                android:padding="10dp"
-                android:background="@drawable/button_round_stroke"
-                android:text="No"
-                android:textAlignment="center"/>
+
+
         </LinearLayout>
 
     </RelativeLayout>

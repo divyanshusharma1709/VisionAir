@@ -80,7 +80,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jjoe64.graphview.GraphView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,9 +92,6 @@ import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.imgproc.Imgproc;
-import org.tensorflow.Graph;
-import org.tensorflow.Session;
-import org.tensorflow.Tensor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -177,26 +173,16 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
 
     int flag;
     float distance;
-    GraphView graphview;
-    long output, outputentropy, outputhour, outputomega, outputapi;
     int tem_flag = 0;
     double latitude;
     float humi, pressure, temp, speed, deg;
     double longitude;
     String nearest = " ";
     Mat img, imgcopy;
-    int currentHourIn24Format;
     ArrayList<cpcbCenterList> arrayList = new ArrayList<>();
-    byte[] graphDef;
-    Session sess;
-    Graph graph;
-    File file;
-    int flagt = 0, feature_check = 0;
-    Tensor<String> checkpointPrefix;
-    String checkpointDir;
+    int feature_check = 0;
     float[][] features = new float[1][10];
     float[] labels = new float[1];
-    int epochs = 1;
     double cpcbLabel;
     DatabaseReference ref;
     String keyDate;

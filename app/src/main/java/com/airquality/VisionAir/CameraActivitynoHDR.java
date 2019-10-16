@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jjoe64.graphview.GraphView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,9 +43,6 @@ import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
-import org.tensorflow.Graph;
-import org.tensorflow.Session;
-import org.tensorflow.Tensor;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -63,7 +57,6 @@ import static org.opencv.imgproc.Imgproc.INTER_AREA;
 public class CameraActivitynoHDR extends AppCompatActivity implements LocationListener {
 
     public static final String TAG = "CameraActivity";
-    public static final String Tagg = "new";
     public static Bitmap bitmap;
     long startTime;
 
@@ -73,8 +66,6 @@ public class CameraActivitynoHDR extends AppCompatActivity implements LocationLi
 
     int flag, feature_check = 0;
     float distance;
-    GraphView graphview;
-    long output, outputentropy, outputhour, outputomega, outputapi;
     DatabaseReference ref;
     String keyDate;
     int tem_flag = 0;
@@ -83,18 +74,10 @@ public class CameraActivitynoHDR extends AppCompatActivity implements LocationLi
     double longitude;
     String nearest = " ";
     Mat img;
-    int currentHourIn24Format;
     ArrayList<cpcbCenterList> arrayList = new ArrayList<>();
-    byte[] graphDef;
-    Session sess;
-    Graph graph;
     File file;
-    int flagt = 0;
-    Tensor<String> checkpointPrefix;
-    String checkpointDir;
     float[][] features = new float[1][10];
     float[] labels = new float[1];
-    int epochs = 1;
     double cpcbLabel;
     Mat imgcopy;
     String stationName;

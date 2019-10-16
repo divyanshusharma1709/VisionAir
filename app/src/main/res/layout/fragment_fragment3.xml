@@ -46,19 +46,6 @@
                 android:layout_marginTop="20dp"
                 android:text="No sensitive data such as the image or the location of the user is taken out of the device during the whole process"
                 android:textAlignment="center"/>
-            <Button
-                android:id="@+id/next1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:letterSpacing="0.1"
-                android:fontFamily="@font/geosans"
-                android:textColor="#000000"
-                android:textSize="20dp"
-                android:layout_marginTop="80dp"
-                android:background="@drawable/button_round_stroke"
-                android:text="Next"
-                android:textAlignment="center"/>
         </LinearLayout>
 
     </RelativeLayout>

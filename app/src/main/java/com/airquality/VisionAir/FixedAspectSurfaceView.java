@@ -24,15 +24,6 @@ import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
 
-/**
- * A SurfaceView that maintains its aspect ratio to be a desired target value.
- *
- * <p>Depending on the layout, the FixedAspectSurfaceView may not be able to maintain the
- * requested aspect ratio. This can happen if both the width and the height are exactly
- * determined by the layout.  To avoid this, ensure that either the height or the width is
- * adjustable by the view; for airquality, by setting the layout parameters to be WRAP_CONTENT for
- * the dimension that is best adjusted to maintain the aspect ratio.</p>
- */
 public class FixedAspectSurfaceView extends SurfaceView {
 
     /**
@@ -54,12 +45,6 @@ public class FixedAspectSurfaceView extends SurfaceView {
         a.recycle();
     }
 
-    /**
-     * Set the desired aspect ratio for this view.
-     *
-     * @param aspect the desired width/height ratio in the current UI orientation. Must be a
-     *               positive value.
-     */
     public void setAspectRatio(float aspect) {
         if (aspect <= 0) {
             throw new IllegalArgumentException("Aspect ratio must be positive");
@@ -68,16 +53,7 @@ public class FixedAspectSurfaceView extends SurfaceView {
         requestLayout();
     }
 
-    /**
-     * Set a gesture listener to listen for touch events
-     */
-    public void setGestureListener(Context context, GestureDetector.OnGestureListener listener) {
-        if (listener == null) {
-            mGestureDetector = null;
-        } else {
-            mGestureDetector = new GestureDetector(context, listener);
-        }
-    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

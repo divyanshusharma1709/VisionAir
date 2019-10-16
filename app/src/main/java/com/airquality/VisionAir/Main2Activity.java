@@ -13,7 +13,7 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        ViewPager viewPager = findViewById(R.id.viewpager);
         SimpleFragmentAdapter adapter = new SimpleFragmentAdapter(getSupportFragmentManager());
 
         // Set the adapter onto the view pager

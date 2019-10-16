@@ -34,11 +34,8 @@
         <activity android:name=".InfoActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Predict_Train"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".Camera2Activity"
             android:screenOrientation="portrait"
-            android:noHistory="true" />
+            android:noHistory="true"/>
         <activity
             android:name=".CameraActivity"
             android:screenOrientation="portrait"
