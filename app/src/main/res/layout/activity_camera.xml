@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/cPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center"
+        android:orientation="horizontal">
+
+<!--        <Button-->
+<!--            android:id="@+id/btnCam"-->
+<!--            android:layout_width="160dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginBottom="40dp"-->
+<!--            android:background="@drawable/button_round"-->
+<!--            android:text="Take Photo"-->
+<!--            android:fontFamily="@font/geosans"-->
+<!--            android:letterSpacing="0.1"-->
+<!--            android:textSize="21sp" />-->
+
+        <Button
+            android:id="@+id/btnCam"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/button_round_stroke_cam"
+            android:letterSpacing="0.1"
+            android:textSize="21sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

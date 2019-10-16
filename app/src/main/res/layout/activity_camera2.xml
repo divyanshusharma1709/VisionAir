@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panels"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <!--<airqualityity.android.hdrviewfinder.FixedAspectSurfaceView-->
+    <!--android:id="@+id/preview"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center_vertical"-->
+    <!--android:layout_weight="4"-->
+    <!--custom:aspectRatio="1.333"/>-->
+
+    <LinearLayout
+        android:id="@+id/control_bar_contents"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/help_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_button" />
+
+        <TextView
+            android:id="@+id/mode_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            tools:text="MODE: HDR" />
+
+        <TextView
+            android:id="@+id/auto_exposure_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_exposure_label" />
+
+        <TextView
+            android:id="@+id/auto_exposure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            tools:text="33.33 ms" />
+
+        <TextView
+            android:id="@+id/even_exposure_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/even_exposure_label" />
+
+        <TextView
+            android:id="@+id/even_exposure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            tools:text="30.30 ms" />
+
+        <TextView
+            android:id="@+id/odd_exposure_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/odd_exposure_label" />
+
+        <TextView
+            android:id="@+id/odd_exposure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            tools:text="30.30 ms" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/non_buttons"
+        android:gravity="right">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appname"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/geosans"
+        android:textColor="#000000"
+        android:letterSpacing="0.1"
+        android:textSize="58dp"
+        android:text="VISIONAIR" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="310dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/back_welcome" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:letterSpacing="0.1"
+            android:fontFamily="@font/geosans"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Check the air around you with a few clicks"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/button"
+            android:id="@+id/button"
+            android:layout_marginTop="50dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/non_buttons"
+        android:layout_marginBottom="30dp">
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/settings_grey"
+        android:layout_weight="1"
+        android:layout_marginRight="200dp"
+        android:id="@+id/settingsBtn"
+        android:layout_alignParentBottom="true"/>
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/info"
+        android:layout_weight="1"
+        android:id="@+id/infoBtn"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"/>
+    </LinearLayout>
+</RelativeLayout>
