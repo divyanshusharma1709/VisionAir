@@ -22,9 +22,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/logo"
         android:label="VisionAir"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Main2Activity"
