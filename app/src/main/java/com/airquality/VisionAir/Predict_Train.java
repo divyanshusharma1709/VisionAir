@@ -330,7 +330,7 @@ public class Predict_Train extends AppCompatActivity {
                                 boolean cont = pref.getBoolean("Contrib", false);
                                 Log.i("Contrib: ", String.valueOf(cont));
                                 //Run training epoch
-                                if(cont) {
+                                if(cont && distance <= 1500) {
                                     train(features, labels, epochs);
 //                                    int iter = pref.getInt("n_samples", 0);
 //                                    iter++;
