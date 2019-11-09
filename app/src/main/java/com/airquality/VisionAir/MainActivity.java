@@ -39,9 +39,10 @@ import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
 
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public static double longitude;
     public static String nearest = "";
     int support, flag;
+    DatabaseReference ref;
     LocationManager locationManager;
     ImageView checkk;
     ArrayList<cpcbCenterList> arrayList = new ArrayList<>();

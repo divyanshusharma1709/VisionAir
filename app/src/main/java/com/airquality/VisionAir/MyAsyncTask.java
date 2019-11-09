@@ -1,6 +1,7 @@
 package com.airquality.VisionAir;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -91,8 +92,31 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
                     e.printStackTrace();
                 }
                 break;
+            case "setPrefFlag":
+                try{
+                    output = setPrefFlag(loss);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
         return output;
+    }
+    private String setPrefFlag(String p) throws MalformedURLException {
+        URL url;
+        HttpsURLConnection conn;
+        url = new URL("https://aqifedserver.herokuapp.com/setPrefFlag");
+        try {
+            conn = (HttpsURLConnection) url.openConnection();
+            conn.setDoOutput(true); // Allow Outputs
+            uploadString(conn, p);
+            conn.disconnect();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return serverResponseMessage;
+
+
     }
 
     private String isModelUpdated() {
@@ -144,7 +168,7 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         try {
             conn = (HttpsURLConnection) url.openConnection();
             conn.setDoOutput(true); // Allow Outputs
-            uploadLoss(conn, loss);
+            uploadString(conn, loss);
             conn.disconnect();
 
         } catch (IOException e) {
@@ -240,7 +264,7 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         }
         return response;
     }
-    private void uploadLoss(HttpURLConnection conn, String filename) {
+    private void uploadString(HttpURLConnection conn, String filename) {
         try {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Connection", "Keep-Alive");
