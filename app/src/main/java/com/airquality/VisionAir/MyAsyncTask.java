@@ -110,7 +110,6 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
             conn.setDoOutput(true); // Allow Outputs
             uploadString(conn, p);
             conn.disconnect();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

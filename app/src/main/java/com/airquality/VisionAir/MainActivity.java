@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         SharedPreferences.Editor editor = pref.edit();
         editor.putBoolean("First", false);
         editor.commit();
+        pref = getApplicationContext().getSharedPreferences("Pref", 0);
+
         //////////////////////////////////////////////////////////ANIMATION////////////////
         //checkk.setVisibility(View.INVISIBLE);
 //        appname = findViewById(R.id.textView);

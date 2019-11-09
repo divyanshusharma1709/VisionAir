@@ -44,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putBoolean("Contrib", false);
                     editor.commit();
-                    MyAsyncTask setPrefFlag = new MyAsyncTask(SettingsActivity.this, null, "setPrefFlag", "True", new MyAsyncTask.AsyncResponse() {
+                    MyAsyncTask setPrefFlag = new MyAsyncTask(SettingsActivity.this, null, "setPrefFlag", "False", new MyAsyncTask.AsyncResponse() {
                         @Override
                         public void processFinish(String output) {
                             Log.i("SetPrefFlag", output);
