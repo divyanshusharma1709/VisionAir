@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.L;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -273,6 +274,7 @@ public class Predict_Train extends AppCompatActivity {
         for (int i = 0; i < 10; i++) {
             featFirebase.add(features[0][i]);
         }
+        featFirebase.add(distance);
         featFirebase.add(labels[0]);
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("FeaturesLabels");
         ref.push().setValue(featFirebase);
@@ -292,6 +294,22 @@ public class Predict_Train extends AppCompatActivity {
                                 initializeGraph();
 
                                 float aqi_pred = predict(features);
+                                String loss =  String.valueOf(aqi_pred - labels[0]);
+
+                                Log.i("Label: ", String.valueOf(labels[0]));
+                                Log.i("Prediction: ", String.valueOf(aqi_pred));
+
+                                Log.i("Loss of Prediction: ", loss);
+                                MyAsyncTask uploadLoss = new MyAsyncTask(Predict_Train.this, file, "uploadLoss", loss, new MyAsyncTask.AsyncResponse() {
+                                    @Override
+                                    public void processFinish(String output) {
+                                        if(output.equals("Loss Upload Successful"))
+                                        {
+                                            Log.i("TAG", "Output of UploadLoss: " + output);
+                                        }
+                                    }
+                                });
+                                uploadLoss.execute();
                                 TextView predbox;
                                 if(aqi_pred <= 60){
                                     setContentView(R.layout.activity_predict_green);
@@ -348,7 +366,6 @@ public class Predict_Train extends AppCompatActivity {
                                     });
                                     uploadWeights.execute();
                                 }
-
                             }
                         }
                     });

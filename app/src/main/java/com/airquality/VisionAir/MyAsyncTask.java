@@ -42,6 +42,7 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
     private String response;
     private String mMethod;
     private File file;
+    private String loss;
 
 
     MyAsyncTask(Activity activity, File file, String method, AsyncResponse delegate) {
@@ -49,6 +50,13 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         this.delegate = delegate;
         this.mMethod = method;
         this.file = file;
+    }
+    MyAsyncTask(Activity activity, File file, String method, String loss, AsyncResponse delegate) {
+        this.weakActivity = new WeakReference<Activity>(activity);
+        this.delegate = delegate;
+        this.mMethod = method;
+        this.file = file;
+        this.loss = loss;
     }
 
     @Override
@@ -75,6 +83,13 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
                 break;
             case "getModel":
                 output = downloadFiles();
+                break;
+            case "uploadLoss":
+                try {
+                    output = uploadLoss();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
         return output;
@@ -122,6 +137,22 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         }
         return response;
     }
+    private String uploadLoss() throws MalformedURLException {
+        URL url;
+        HttpsURLConnection conn;
+        url = new URL("https://aqifedserver.herokuapp.com/uploadLoss");
+        try {
+            conn = (HttpsURLConnection) url.openConnection();
+            conn.setDoOutput(true); // Allow Outputs
+            uploadLoss(conn, loss);
+            conn.disconnect();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return serverResponseMessage;
+
+    }
 
     private String uploadWeights() throws MalformedURLException {
         URL url;
@@ -132,7 +163,7 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         try {
             conn = (HttpsURLConnection) url.openConnection();
             conn.setDoOutput(true); // Allow Outputs
-            uploadWeight(conn);
+            uploadWeight(conn, "weights.bin");
             conn.disconnect();
 
         } catch (IOException e) {
@@ -209,8 +240,7 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
         }
         return response;
     }
-
-    private void uploadWeight(HttpURLConnection conn) {
+    private void uploadLoss(HttpURLConnection conn, String filename) {
         try {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Connection", "Keep-Alive");
@@ -223,7 +253,44 @@ public class MyAsyncTask extends AsyncTask<URL, Void, String> {
             DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
             dos.writeBytes(twoHyphens + boundary + lineEnd);
             dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\""
-                    + "weights.bin" + "\"" + lineEnd);
+                    + filename + "\"" + lineEnd);
+
+            dos.writeBytes(lineEnd);
+            //Write File
+            dos.write(loss.getBytes());
+
+            dos.writeBytes(lineEnd);
+            dos.writeBytes(twoHyphens + boundary + twoHyphens
+                    + lineEnd);
+            int serverResponseCode = conn.getResponseCode();
+            serverResponseMessage = conn.getResponseMessage();
+            Log.i("Response Message: ", serverResponseMessage);
+            Log.i("Response Code: ", String.valueOf(serverResponseCode));
+            dos.flush();
+            dos.close();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            conn.disconnect();
+        }
+    }
+
+    private void uploadWeight(HttpURLConnection conn, String filename) {
+        try {
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Connection", "Keep-Alive");
+            conn.setRequestProperty("ENCTYPE",
+                    "multipart/form-data");
+            conn.setRequestProperty("Content-Type",
+                    "multipart/form-data;boundary=" + boundary);
+            conn.setRequestProperty("file", "weights");
+
+            DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+            dos.writeBytes(twoHyphens + boundary + lineEnd);
+            dos.writeBytes("Content-Disposition: form-data; name=\"file\";filename=\""
+                    + filename + "\"" + lineEnd);
 
             dos.writeBytes(lineEnd);
             //Write File
