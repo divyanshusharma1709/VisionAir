@@ -30,8 +30,8 @@
                 android:layout_marginBottom="10dp"
                 android:textAlignment="center"/>
             <ImageView
-                android:layout_width="320dp"
-                android:layout_height="300dp"
+                android:layout_width="260dp"
+                android:layout_height="240dp"
                 android:src="@drawable/average_safe"/>
             <TextView
                 android:id="@+id/In"

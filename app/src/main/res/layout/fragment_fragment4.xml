@@ -29,8 +29,8 @@
                 android:textSize="38dp"
                 android:text="Personalization Opt-In" />
             <ImageView
-                android:layout_width="290dp"
-                android:layout_height="200dp"
+                android:layout_width="260dp"
+                android:layout_height="210dp"
                 android:src="@drawable/collab"
                 ></ImageView>
             <TextView

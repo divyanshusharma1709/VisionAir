@@ -30,8 +30,8 @@
                 android:textSize="38dp"
                 android:text="Your privacy" />
             <ImageView
-                android:layout_width="280dp"
-                android:layout_height="300dp"
+                android:layout_width="220dp"
+                android:layout_height="250dp"
                 android:src="@drawable/lcok"
                 ></ImageView>
             <TextView

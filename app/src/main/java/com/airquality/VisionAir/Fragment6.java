@@ -21,5 +21,10 @@ public class Fragment6 extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Main2Activity.button.setVisibility(View.VISIBLE);
+    }
 
 }

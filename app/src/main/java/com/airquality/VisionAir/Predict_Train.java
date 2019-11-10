@@ -8,10 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.L;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -41,8 +48,12 @@ public class Predict_Train extends AppCompatActivity {
     float distance;
     Tensor<String> checkpointPrefix;
     String checkpointDir;
+    DatabaseReference ref;
     float[][] features;
     float[] labels;
+    SharedPreferences pref;
+    private FirebaseAuth mAuth;
+
 
     public void finalSave() {
         ArrayList<ArrayList<Tensor<?>>> at = getWeights();
@@ -261,7 +272,8 @@ public class Predict_Train extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
-        ArrayList<Float> featFirebase = new ArrayList<>();
+        mAuth = FirebaseAuth.getInstance();
+        final ArrayList<Float> featFirebase = new ArrayList<>();
         Object[] featureSerialized = (Object[]) getIntent().getExtras().getSerializable("Features");
         labels = getIntent().getExtras().getFloatArray("Labels");
         distance = getIntent().getExtras().getFloat("Distance");
@@ -275,9 +287,31 @@ public class Predict_Train extends AppCompatActivity {
             featFirebase.add(features[0][i]);
         }
         featFirebase.add(distance);
+        Log.i("Distance: ", String.valueOf(distance));
         featFirebase.add(labels[0]);
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("FeaturesLabels");
-        ref.push().setValue(featFirebase);
+        pref = getApplicationContext().getSharedPreferences("Pref", 0);
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("FireBase Sign In", "signInAnonymously:success");
+                            if(pref.getBoolean("Debugger", false)) {
+
+                                ref = FirebaseDatabase.getInstance().getReference().child("FeaturesLabelsDebug");
+                            }
+                            else
+                                ref = FirebaseDatabase.getInstance().getReference().child("FeaturesLabels");
+                            ref.push().setValue(featFirebase);
+                            Log.i("Database: ", "Pushed features" + featFirebase.get(0));
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("FireBase Sign In", "signInAnonymously:failure", task.getException());
+                        }
+                    }
+                });
+
 
         //Check if new Model is available
         MyAsyncTask isGlobalModelUpdated = new MyAsyncTask(Predict_Train.this, file, "ismodelUpdated", new MyAsyncTask.AsyncResponse() {
@@ -348,7 +382,7 @@ public class Predict_Train extends AppCompatActivity {
                                 boolean cont = pref.getBoolean("Contrib", false);
                                 Log.i("Contrib: ", String.valueOf(cont));
                                 //Run training epoch
-                                if(cont && distance <= 1500) {
+                                if(cont && distance <= 1500 && distance != 0.0) {
                                     train(features, labels, epochs);
 //                                    int iter = pref.getInt("n_samples", 0);
 //                                    iter++;

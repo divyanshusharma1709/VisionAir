@@ -56,5 +56,15 @@ public class Fragment7 extends Fragment {
 
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+
+        super.setUserVisibleHint(isVisibleToUser);
+
+        if(super.getUserVisibleHint()){
+            Main2Activity.button.setVisibility(View.INVISIBLE);
+        }
+    }
+
 
 }

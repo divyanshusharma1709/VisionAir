@@ -17,11 +17,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_margin="36dp"
-        android:layout_height="36dp">
+        android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/poptbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:text="Personalization Model Opt In"/>
 
         <CheckBox
@@ -29,5 +29,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"/>
+        <TextView
+            android:id="@+id/debugtv"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/poptbox"
+            android:layout_centerVertical="true"
+            android:text="Debugger Mode"/>
+
+        <CheckBox
+            android:id="@+id/devCB"
+            android:layout_below="@id/pmbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"/>
+        <EditText
+            android:id="@+id/passET"
+            android:hint="Enter Password"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/debugtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="Enter Password" />
+        <Button
+            android:id="@+id/passBTN"
+            android:layout_below="@id/passET"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"/>
     </RelativeLayout>
 </LinearLayout>
