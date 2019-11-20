@@ -350,11 +350,17 @@ public class Predict_Train extends AppCompatActivity {
                                     predbox = findViewById(R.id.pred_green);
                                 }
                                 else if(aqi_pred < 120 && aqi_pred > 60){
-                                setContentView(R.layout.activity_predict_ui);
-                                predbox = findViewById(R.id.pred_orang);}
+                                    setContentView(R.layout.activity_predict_ui);
+                                    predbox = findViewById(R.id.pred_orang);}
                                 else{
                                     setContentView(R.layout.activity_predict_red);
                                     predbox = findViewById(R.id.pred_red);
+                                    TextView status = findViewById(R.id.status);
+                                    if(aqi_pred>250){
+                                        status.setText("Severe");}
+                                    else if(aqi_pred>400){
+                                        status.setText("Hazardous");
+                                    }
                                 }
                                 Button retry = findViewById(R.id.retryBtn);
                                 retry.setOnClickListener(new View.OnClickListener() {

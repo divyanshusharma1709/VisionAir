@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
-        android:src="@drawable/ui_background_red"></ImageView>
+        android:src="@drawable/ui_background_red"/>
 
     <LinearLayout
         android:id="@+id/text"
@@ -26,12 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:letterSpacing="0.1"
-
             android:text="PM2.5"
             android:textSize="30dp"
             android:textColor="#ffff"
             android:fontFamily="@font/coolvetica_rg"
-            ></TextView>
+            />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,8 +40,9 @@
         android:textSize="88dp"
         android:textColor="#ffff"
         android:fontFamily="@font/coolvetica_rg"
-        ></TextView>
+        />
         <TextView
+            android:id="@+id/status"
             android:letterSpacing="0.1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
             android:textSize="36dp"
             android:textColor="#ffff"
             android:fontFamily="@font/coolvetica_rg"
-            ></TextView>
+            />
 
     </LinearLayout>
 
