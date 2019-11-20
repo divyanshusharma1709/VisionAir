@@ -296,7 +296,7 @@ public class Predict_Train extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d("FireBase Sign In", "signInAnonymously:success");
+                            Log.i("FireBase Sign In", "signInAnonymously:success");
                             if(pref.getBoolean("Debugger", false)) {
 
                                 ref = FirebaseDatabase.getInstance().getReference().child("FeaturesLabelsDebug");
@@ -307,7 +307,7 @@ public class Predict_Train extends AppCompatActivity {
                             Log.i("Database: ", "Pushed features" + featFirebase.get(0));
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w("FireBase Sign In", "signInAnonymously:failure", task.getException());
+                            Log.i("FireBase Sign In", "signInAnonymously:failure", task.getException());
                         }
                     }
                 });
@@ -377,7 +377,7 @@ public class Predict_Train extends AppCompatActivity {
                                 formatter.setMaximumFractionDigits(1);
 
 
-                                predbox.setText(Float.toString(Float.parseFloat(formatter.format(aqi_pred))));
+                                predbox.setText(formatter.format(aqi_pred));
                                 SharedPreferences pref = getApplicationContext().getSharedPreferences("Pref", 0);
                                 boolean cont = pref.getBoolean("Contrib", false);
                                 Log.i("Contrib: ", String.valueOf(cont));
