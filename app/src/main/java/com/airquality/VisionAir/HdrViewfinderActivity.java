@@ -172,7 +172,7 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
     }
 
     int flag;
-    float distance;
+    float distance = 0;
     int tem_flag = 0;
     double latitude;
     float humi, pressure, temp, speed, deg;
@@ -386,7 +386,8 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
 
         }
-        if (MainActivity.nearest != "") {
+        if (!MainActivity.nearest.equals("")) {
+            distance = MainActivity.distance;
             latitude = MainActivity.latitude;
             longitude = MainActivity.longitude;
             formatter = NumberFormat.getNumberInstance();
@@ -1357,7 +1358,6 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
 
         location1 = new Location("All locations");
 
-        distance = 0;
 
 
         Log.i(TAG, "Latitude: " + latitude + "\n Longitude: " + longitude);
@@ -1367,7 +1367,6 @@ public class HdrViewfinderActivity extends AppCompatActivity implements
         float[] a = new float[arrayList.size()];
         String[] name = new String[arrayList.size()];
         if (flag == 0) {
-
             int i;
             float min = 9999999;
             for (i = 0; i < arrayList.size(); i++) {

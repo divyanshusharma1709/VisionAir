@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public static final String TAG = "MainActivity";
     public static double latitude;
     public static double longitude;
+    public static float distance = 0;
     public static String nearest = "";
     int support, flag;
     DatabaseReference ref;
@@ -248,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         location1 = new Location("All locations");
 
-        float distance = 0;
 
 
 //        //Toast.makeText(getApplicationContext(),"Latitude: " + latitude + "\n Longitude: " + longitude,Toast.LENGTH_LONG).show();
@@ -256,7 +256,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         float[] a = new float[arrayList.size()];
         String[] name = new String[arrayList.size()];
         if (flag == 0) {
-
             int i;
             float min = 9999999;
             for (i = 0; i < arrayList.size(); i++) {

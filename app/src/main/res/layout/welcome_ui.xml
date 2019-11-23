@@ -51,6 +51,27 @@
             android:layout_marginTop="20dp"
             android:text="Check the air around you with a few clicks"
             android:textAlignment="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/button"
+            android:layout_marginBottom="30dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/settings_grey"
+                android:layout_weight="1"
+                android:layout_marginEnd="200dp"
+                android:id="@+id/settingsBtn"
+                />
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/info"
+                android:layout_weight="1"
+                android:id="@+id/infoBtn" />
+        </LinearLayout>
 
     </LinearLayout>
         <ImageView
@@ -58,29 +79,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/button"
             android:id="@+id/button"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="8dp" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/non_buttons"
-        android:layout_marginBottom="30dp">
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/settings_grey"
-        android:layout_weight="1"
-        android:layout_marginRight="200dp"
-        android:id="@+id/settingsBtn"
-        android:layout_alignParentBottom="true"/>
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/info"
-        android:layout_weight="1"
-        android:id="@+id/infoBtn"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"/>
-    </LinearLayout>
+
 </RelativeLayout>

@@ -66,7 +66,7 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
 
     long startTime;
     int flag, feature_check = 0;
-    float distance;
+    float distance = 0;
     DatabaseReference ref;
     String keyDate;
     int tem_flag = 0;
@@ -175,7 +175,8 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
         }
 
 
-        if (MainActivity.nearest != "") {
+        if (!MainActivity.nearest.equals("")) {
+            distance = MainActivity.distance;
             latitude = MainActivity.latitude;
             longitude = MainActivity.longitude;
             formatter = NumberFormat.getNumberInstance();
@@ -789,7 +790,6 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
 
         location1 = new Location("All locations");
 
-        distance = 0;
 
 
         Log.i(TAG, "Latitude: " + latitude + "\n Longitude: " + longitude);
@@ -799,7 +799,6 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
         float[] a = new float[arrayList.size()];
         String[] name = new String[arrayList.size()];
         if (flag == 0) {
-
             int i;
             float min = 9999999;
             for (i = 0; i < arrayList.size(); i++) {
@@ -1297,15 +1296,16 @@ public class CameraActivity extends AppCompatActivity implements LocationListene
                         mBundle.putSerializable("Features", features);
                         mBundle.putFloatArray("Labels", labels);
                         mBundle.putFloat("Distance", distance);
+                        Log.i("Distance in Camera", String.valueOf(distance));
                         intent.putExtras(mBundle);
                         tem_flag = 1;
-                        finishActivity(0);
                         labels[0] = (float) cpcbLabel;
                         for (int i = 0; i < features.length; i++) {
                             for (int j = 0; j < features[i].length; j++) {
                                 Log.i(TAG, "from api features: " + i + " " + j + features[0][j]);
                             }
                         }
+                        finishActivity(0);
                         startActivity(intent);
                     }
                 } catch (final JSONException e) {

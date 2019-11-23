@@ -45,7 +45,7 @@ public class Predict_Train extends AppCompatActivity {
     Graph graph;
     File file;
     int epochs = 3;
-    float distance;
+    float distance = 0;
     Tensor<String> checkpointPrefix;
     String checkpointDir;
     DatabaseReference ref;
@@ -386,9 +386,10 @@ public class Predict_Train extends AppCompatActivity {
                                 predbox.setText(formatter.format(aqi_pred));
                                 SharedPreferences pref = getApplicationContext().getSharedPreferences("Pref", 0);
                                 boolean cont = pref.getBoolean("Contrib", false);
+                                boolean debug = pref.getBoolean("Debugger", false);
                                 Log.i("Contrib: ", String.valueOf(cont));
                                 //Run training epoch
-                                if(cont && distance <= 1500 && distance != 0.0) {
+                                if(cont && distance != 0.0 && debug) {
                                     train(features, labels, epochs);
 //                                    int iter = pref.getInt("n_samples", 0);
 //                                    iter++;
